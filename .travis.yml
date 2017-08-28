@@ -6,6 +6,8 @@ go:
   - 1.8.x
 
 script:
+  - cp /etc/hosts /tmp/hosts
   - docker run --rm --entrypoint="/bin/sh"
-    lachlanevenson/k8s-kubectl -c 'echo 8.8.8.8 >> /etc/hosts;
+    --volume="/tmp/hosts:/etc/hosts"
+    lachlanevenson/k8s-kubectl -c 'echo 8.8.8.8 google.com >> /etc/hosts;
     cat /etc/hosts'
