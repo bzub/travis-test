@@ -1,0 +1,11 @@
+services:
+  - docker
+
+language: go
+go:
+  - 1.8.x
+
+script:
+  - docker run --rm --entrypoint="/bin/sh"
+    lachlanevenson/k8s-kubectl -c 'echo 8.8.8.8 >> /etc/hosts;
+    cat /etc/hosts'
