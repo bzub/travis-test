@@ -9,5 +9,9 @@ script:
   - cp /etc/hosts /tmp/hosts
   - docker run --rm --entrypoint="/bin/sh"
     --volume="/tmp/hosts:/etc/hosts"
-    lachlanevenson/k8s-kubectl -c 'echo 8.8.8.8 google.com >> /etc/hosts;
+    lachlanevenson/k8s-kubectl -c 'echo "\n8.8.8.8 google.com\n" >> /etc/hosts;
+    cat /etc/hosts'
+  - docker run --rm --entrypoint="/bin/sh"
+    --volume="/tmp/hosts:/etc/hosts"
+    hashicorp/terraform -c 'echo "\n8.8.8.8 google.com\n" >> /etc/hosts;
     cat /etc/hosts'
